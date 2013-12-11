@@ -11,7 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131211212123) do
+ActiveRecord::Schema.define(:version => 20131211233217) do
+
+  create_table "dragon_rental_requests", :force => true do |t|
+    t.integer  "dragon_id",                         :null => false
+    t.date     "start_date",                        :null => false
+    t.date     "end_date",                          :null => false
+    t.string   "status",     :default => "PENDING", :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "dragon_rental_requests", ["dragon_id"], :name => "index_dragon_rental_requests_on_dragon_id"
+  add_index "dragon_rental_requests", ["end_date"], :name => "index_dragon_rental_requests_on_end_date"
+  add_index "dragon_rental_requests", ["start_date"], :name => "index_dragon_rental_requests_on_start_date"
 
   create_table "dragons", :force => true do |t|
     t.integer  "age",        :null => false

@@ -1,5 +1,10 @@
+<form action="<%= @dragon.id ? dragon_url(@dragon) : dragons_url %>" method="POST">
 
-<form action="<%= dragons_url %>" method="POST">
+  <% if @dragon.id %>
+  <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+
   <label for="dragon_name">Name</label>
   <input id="dragon_name" name="dragon[name]" type="text" value="<%= @dragon.name%>">
 

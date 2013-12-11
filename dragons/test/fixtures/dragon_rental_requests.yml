@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  dragon_id: 1
+  start_date: 2013-12-11
+  end_date: 2013-12-11
+  status: MyString
+
+two:
+  dragon_id: 1
+  start_date: 2013-12-11
+  end_date: 2013-12-11
+  status: MyString
