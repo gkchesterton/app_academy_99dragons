@@ -1,0 +1,10 @@
+<table>
+<% @dragon.attributes.each do |attr, val| %>
+  <tr>
+    <td><%= attr %>: </td>
+    <td><%= val %></td>
+  </tr>
+<% end %>
+</table>
+
+<%= link_to("<< to Dragons", dragons_url)%>

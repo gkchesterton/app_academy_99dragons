@@ -1,0 +1,40 @@
+
+<form action="<%= dragons_url %>" method="POST">
+  <label for="dragon_name">Name</label>
+  <input id="dragon_name" name="dragon[name]" type="text" value="<%= @dragon.name%>">
+
+  <br><br>
+
+  <label for="dragon_sex">Sex</label><br>
+  <% %w(M F).each do |sex|%>
+    <input id="dragon_<%= sex %>" name="dragon[sex]" type="radio" value="<%= sex %>" <%= "checked" if @dragon.sex == sex %> >
+    <label for="<%= "dragon #{sex}" %>"><%= sex %></label>
+    <br>
+  <% end %>
+
+  <br>
+
+  <label for="dragon_color">Color</label>
+    <select name="dragon[color]" id="dragon_color">
+      <% Dragon.colors.each do |color| %>
+        <option
+          value="<%= color %>"
+          <%= "selected" if @dragon.color == color %>>
+            <%= color %>
+        </option>
+      <% end %>
+
+      <% if @dragon.color.nil? %>
+        <option selected value="blank">blank</option>
+      <% end %>
+    </select>
+
+    <br><br>
+
+  <label for="dragon_birth_date">Birth Date</label>
+  <input type="date" name="dragon[birth_date]" id="dragon_birth_date"  value="<%= @dragon.birth_date%>">
+
+  <br><br>
+
+  <input type="submit" value="<%= @dragon.id ? "Update Dragon" : "Create Dragon" %> ">
+</form>
