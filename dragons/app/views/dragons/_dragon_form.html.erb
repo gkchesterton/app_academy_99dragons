@@ -4,6 +4,10 @@
   <input type="hidden" name="_method" value="PUT">
   <% end %>
 
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
 
   <label for="dragon_name">Name</label>
   <input id="dragon_name" name="dragon[name]" type="text" value="<%= @dragon.name%>">

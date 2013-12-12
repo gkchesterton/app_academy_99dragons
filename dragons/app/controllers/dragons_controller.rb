@@ -17,6 +17,7 @@ class DragonsController < ApplicationController
   end
 
   def create
+    params[:dragon][:user_id] = current_user.id
     @dragon = Dragon.new(params[:dragon])
     if @dragon.save
       redirect_to dragon_url(@dragon)
