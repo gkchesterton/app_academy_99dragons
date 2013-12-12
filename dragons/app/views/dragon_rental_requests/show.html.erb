@@ -1,0 +1,8 @@
+<h1>Request for: <%= @dragon_rental_request.dragon.name %></h1>
+<ul>
+  <% @dragon_rental_request.attributes.each do |attr, val| %>
+    <li><%= attr %>: <%= val %></li>
+  <% end %>
+</ul>
+
+<%= link_to("<< Dragon Rental Requests", dragon_rental_requests_url) %>

@@ -1,0 +1,42 @@
+<form action="<%= @dragon_rental_request.id ? dragon_rental_request_url(@dragon_rental_request) : dragon_rental_requests_url %>" method="POST">
+
+  <% if @dragon_rental_request.id %>
+  <input type="hidden" name="_method" value="PUT">
+  <% end %>
+
+  <label for="dragon_rental_request_name">Name</label>
+    <select name="dragon_rental_request[dragon_id]" id="dragon_rental_request_name">
+      <% @dragons.each do |dragon| %>
+        <option
+          value="<%= dragon.id %>"
+          <%= "selected" if @dragon_rental_request.dragon != nil &&
+              @dragon_rental_request.dragon.name == dragon.name %>>
+            <%= dragon.name %>
+        </option>
+      <% end %>
+
+      <% if @dragon_rental_request.dragon.nil? %>
+        <option selected value="blank">blank</option>
+      <% end %>
+    </select>
+
+    <br><br>
+
+  <label for="dragon_rental_request_start_date">Start Date</label>
+  <input type="date" name="dragon_rental_request[start_date]"
+         id="dragon_rental_request_start_date"
+         value="<%= @dragon_rental_request.start_date%>">
+
+  <br><br>
+
+  <label for="dragon_rental_request_end_date">End Date</label>
+  <input type="date" name="dragon_rental_request[end_date]"
+         id="dragon_rental_request_end_date"
+         value="<%= @dragon_rental_request.end_date%>">
+
+  <br><br>
+
+  <input type="submit" value="<%= @dragon_rental_request.id ? "Update Request" :
+         "Create Request" %> ">
+</form>
+

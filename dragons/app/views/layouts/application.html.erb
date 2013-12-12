@@ -8,6 +8,13 @@
 </head>
 <body>
 
+<% unless @errors.nil?%>
+  <% @errors.each do |error| %>
+    <h4 style="color: red;">
+      <%= error %>
+    </h4>
+  <% end %>
+<% end %>
 <%= yield %>
 
 </body>
