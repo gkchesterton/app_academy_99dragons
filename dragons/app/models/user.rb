@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :session_token, :password
-  attr_reader :password
+  # attr_reader :password
   before_validation :reset_session_token, on: :create
   validates :name, :password_digest, :session_token, presence: true
 

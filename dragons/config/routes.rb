@@ -7,4 +7,6 @@ Dragons::Application.routes.draw do
       put 'deny'
     end
   end
+  resource :session, only: [:create, :new, :destroy]
+  resources :users
 end

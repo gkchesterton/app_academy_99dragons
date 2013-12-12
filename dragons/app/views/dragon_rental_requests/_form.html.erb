@@ -1,5 +1,10 @@
 <form action="<%= @dragon_rental_request.id ? dragon_rental_request_url(@dragon_rental_request) : dragon_rental_requests_url %>" method="POST">
 
+  <input
+    name="authenticity_token"
+    type="hidden"
+    value="<%= form_authenticity_token %>">
+
   <% if @dragon_rental_request.id %>
   <input type="hidden" name="_method" value="PUT">
   <% end %>

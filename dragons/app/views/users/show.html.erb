@@ -1,0 +1,9 @@
+<h1>User: <%= @user.name %></h1>
+
+<ul>
+  <% @user.attributes.each do |attr, val| %>
+    <li>
+      <%= attr %>: <%= val %>
+    </li>
+  <% end %>
+</ul>
