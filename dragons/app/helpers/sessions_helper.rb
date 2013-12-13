@@ -1,16 +1,22 @@
 module SessionsHelper
   def login!(user)
-    user.reset_session_token
+    environment = request.env["HTTP_USER_AGENT"]
+    user.reset_session_token(environment)
     user.save
-    session[:session_token] = user.session_token
+    session[:session_token] =
+            UserSession.find_by_user_id_and_environment(user.id,
+                        environment).session_token
   end
 
   def current_user
-    User.find_by_session_token(session[:session_token])
+    unless session[:session_token].nil?
+      user_session = UserSession.find_by_session_token(session[:session_token])
+      user_session.user
+    end
   end
 
   def logout!
-    current_user.reset_session_token
+    UserSession.find_by_session_token(session[:session_token]).destroy
     session[:session_token] = nil
   end
 

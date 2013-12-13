@@ -4,9 +4,14 @@ class User < ActiveRecord::Base
   validates :name, :password_digest, :session_token, presence: true
 
   has_many :dragons
+  has_many :sessions, class_name: "UserSession"
 
-  def reset_session_token
-    self.session_token = SecureRandom::urlsafe_base64(16)
+  def reset_session_token(environment)
+    # self.session_token = SecureRandom::urlsafe_base64(16)
+    UserSession.create!(user_id: self.id,
+                        session_token: SecureRandom::urlsafe_base64(16),
+                        environment: environment,
+                        geo: "asdf")
   end
 
   def password=(pt)

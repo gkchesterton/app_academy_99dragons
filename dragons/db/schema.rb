@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131212233342) do
+ActiveRecord::Schema.define(:version => 20131213005217) do
 
   create_table "dragon_rental_requests", :force => true do |t|
     t.integer  "dragon_id",                         :null => false
@@ -38,6 +38,18 @@ ActiveRecord::Schema.define(:version => 20131212233342) do
   end
 
   add_index "dragons", ["user_id"], :name => "index_dragons_on_user_id"
+
+  create_table "user_sessions", :force => true do |t|
+    t.integer  "user_id",       :null => false
+    t.string   "session_token", :null => false
+    t.string   "environment",   :null => false
+    t.string   "geo",           :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "user_sessions", ["session_token"], :name => "index_user_sessions_on_session_token"
+  add_index "user_sessions", ["user_id"], :name => "index_user_sessions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name",            :null => false
