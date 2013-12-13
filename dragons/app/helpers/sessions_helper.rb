@@ -18,8 +18,13 @@ module SessionsHelper
   def logout!(sess = UserSession.find_by_session_token(session[:session_token]))
     if sess.session_token == session[:session_token]
       session[:session_token] = nil
+      sess.destroy
+      redirect_to new_session_url
+    else
+      user = sess.user
+      sess.destroy
+      redirect_to user_url(user)
     end
-    session.destroy
   end
 
   def require_current_user

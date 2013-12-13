@@ -16,7 +16,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    logout!
-    render :new
+    if params[:session_id].nil?
+      logout!
+    else
+      session = UserSession.find(params[:session_id])
+      logout!(session)
+    end
   end
 end
