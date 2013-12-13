@@ -3,8 +3,15 @@
 <ul>
   <% @dragon_rental_requests.each do |request| %>
   <li>Request for: <%= request.dragon.name %></li>
-  <%= button_to("Deny!", deny_dragon_rental_request_url(request), method: :put) %>
-   <%= button_to("Approve!", approve_dragon_rental_request_url(request), method: :put) %>
+  <% if current_user_is_owner?(request.dragon.id) %>
+    <%= button_to("Deny!",
+                   deny_dragon_rental_request_url(request),
+                   method: :put) %>
+
+     <%= button_to("Approve!",
+                    approve_dragon_rental_request_url(request),
+                    method: :put) %>
+     <% end %>
     <ul>
     <% request.attributes.each do |attr, val| %>
       <li><%= attr %>: <%= val %></li>

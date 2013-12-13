@@ -1,5 +1,8 @@
 class DragonsController < ApplicationController
 
+  before_filter :require_current_user, only: [:update, :edit, :new, :create]
+  before_filter :redirect_unless_owner, only: [:edit, :update]
+
   def index
     @dragons = Dragon.all
   end
