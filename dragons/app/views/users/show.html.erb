@@ -7,3 +7,15 @@
     </li>
   <% end %>
 </ul>
+
+<h1>Sessions</h1>
+  <% @user.sessions.each do |session| %>
+  <ul>
+  <% session.attributes.each do |attr, val| %>
+    <li>
+      <%= attr %>: <%= val %>
+    </li>
+    <% end %>
+    </ul>
+  <% end %>
+

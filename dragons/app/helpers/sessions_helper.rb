@@ -15,9 +15,11 @@ module SessionsHelper
     end
   end
 
-  def logout!
-    UserSession.find_by_session_token(session[:session_token]).destroy
-    session[:session_token] = nil
+  def logout!(sess = UserSession.find_by_session_token(session[:session_token]))
+    if sess.session_token == session[:session_token]
+      session[:session_token] = nil
+    end
+    session.destroy
   end
 
   def require_current_user
